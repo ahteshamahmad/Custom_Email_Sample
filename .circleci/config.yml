@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Send Email Notification
           command: |
-            python - <<EOF
+            python - <EOF
             import smtplib
             from email.mime.text import MIMEText
 
