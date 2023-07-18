@@ -14,8 +14,3 @@ workflows:
   build-and-notify:
     jobs:
       - send_email_notification
-          requires:
-            - build
-          filters:
-            branches:
-              only: main
