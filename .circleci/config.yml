@@ -23,7 +23,7 @@ jobs:
             smtp_port = 587
             # Set your SES SMTP credentials
             smtp_username = "AKIAZ3KXKBVFTRJYV6GP"
-            smtp_password = "L1YxuHhww6hYx8ypvomLRgvhWNh53UwakbEsn/hh"
+            smtp_password = "L1YxuHhww6hYx8ypvomLRgvhWNh53UwakbEsn"
 
             # Email content
             subject = "CircleCI Build Notification"
