@@ -15,12 +15,6 @@ jobs:
           name: Run tests
           command: npm test
 
-workflows:
-  version: 2
-  build_and_notify:
-    jobs:
-      - build
-
   # Configure email notifications
   notifications:
     email:
@@ -28,3 +22,9 @@ workflows:
         - $NOTIFY_EMAILS
       branches:
         ignore: /.*/
+        
+workflows:
+  version: 2
+  build_and_notify:
+    jobs:
+      - build
