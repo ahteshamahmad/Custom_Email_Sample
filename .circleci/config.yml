@@ -22,8 +22,9 @@ jobs:
             smtp_server = "email-smtp.ap-northeast-1.amazonaws.com"
             smtp_port = 587
             # Set your SES SMTP credentials
-            smtp_username = "AKIAZ3KXKBVFTRJYV6GP"
-            smtp_password = "L1YxuHhww6hYx8ypvomLRgvhWNh53UwakbEsn"
+            smtp_username = "AKIAZ3KXKBVFZHUIYAU6"
+            smtp_password = "BLuNCsdn69dLXyQAJYp4vdA3z2PfM79J3zZB0OW2leTW
+"
 
             # Email content
             subject = "CircleCI Build Notification"
