@@ -31,7 +31,7 @@ jobs:
 
             # Create a MIMEText object
             message = MIMEText(body)
-            message['Subject'] = subject
+            message['subject'] = subject
             message['From'] = sender
             message['To'] = recipient
 
@@ -44,4 +44,4 @@ jobs:
                 server.quit()
             except Exception as e:
                 print(f"Failed to send email: {e}")
-                '
+            '
