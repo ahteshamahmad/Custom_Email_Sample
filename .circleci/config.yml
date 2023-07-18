@@ -31,9 +31,9 @@ jobs:
 
             # Create a MIMEText object
             message = MIMEText(body)
-            message['subject'] = subject
-            message['From'] = sender
-            message['To'] = recipient
+            message["subject"] = subject
+            message["From"] = sender
+            message["To"] = recipient
 
             # Connect to the SMTP server and send the email
             try:
