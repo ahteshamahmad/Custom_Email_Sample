@@ -21,7 +21,7 @@ jobs:
 
       - run:
           name: Send email notification on failure
-          command: echo "Subject: Build Failed - $Email_Sample" | sendmail -v altamashfaridi@gmail.com
+          command: echo "Subject: Build Failed - $Custom_Email_Sample" | sendmail -v altamashfaridi@gmail.com
 
 workflows:
   version: 2
