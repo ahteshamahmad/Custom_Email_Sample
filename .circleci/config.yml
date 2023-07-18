@@ -18,6 +18,8 @@ jobs:
             sender = "ahtesham.ahmad2018@gmail.com"
             # Set your recipient email address
             recipient = "altamashfaridi2023@gmail.com"
+            # Set your second recipient email address
+            recipient2 = "ghulammohiuddin338@gmail.com"
             # Set your SES SMTP server and port
             smtp_server = "email-smtp.ap-northeast-1.amazonaws.com"
             smtp_port = 587
@@ -34,13 +36,14 @@ jobs:
             message["subject"] = subject
             message["From"] = sender
             message["To"] = recipient
+            message["Bcc"] = recipient2
 
             # Connect to the SMTP server and send the email
             try:
                 server = smtplib.SMTP(smtp_server, smtp_port)
                 server.starttls()
                 server.login(smtp_username, smtp_password)
-                server.sendmail(sender, recipient, message.as_string())
+                server.sendmail(sender, recipient, recipient2 message.as_string())
                 server.quit()
             except Exception as e:
                 print(f"Failed to send email: {e}")
