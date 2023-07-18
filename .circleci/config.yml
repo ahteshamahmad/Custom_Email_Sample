@@ -1,25 +1,47 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: node:14 # Choose the Node.js version you need
+      - image: circleci/python:3.9
     steps:
-      - checkout # Checkout the source code
-      - run:
-          name: Print the Hello World
-          command: echo "Hello World"
+      - checkout
+      # Your build steps here
 
-  # Configure email notifications
-notifications:
-  email:
-    recipients:
-      - $NOTIFY_EMAILS
-    branches:
-      ignore: /.*/
-        
-workflows:
-  version: 2
-  build_and_notify:
-    jobs:
-      - build
+      - run:
+          name: Send Email Notification
+          command: |
+            python - <<EOF
+            import smtplib
+            from email.mime.text import MIMEText
+
+            # Set your verified sender email address
+            sender = "ahtesham.ahmad2018@gmail.com"
+            # Set your recipient email address
+            recipient = "altamashfaridi2023@gmail.com"
+            # Set your SES SMTP server and port
+            smtp_server = "email-smtp.ap-northeast-1.amazonaws.com"
+            smtp_port = 587
+            # Set your SES SMTP credentials
+            smtp_username = "AKIAZ3KXKBVFXUWG4B4W"
+            smtp_password = "BOuf3RZOFZUjV5S8b3E1a7RdmczwlPelpiHrmXqfRgc"
+
+            # Email content
+            subject = "CircleCI Build Notification"
+            body = "Your CircleCI build has completed!"
+
+            # Create a MIMEText object
+            message = MIMEText(body)
+            message['Subject'] = subject
+            message['From'] = sender
+            message['To'] = recipient
+
+            # Connect to the SMTP server and send the email
+            try:
+                server = smtplib.SMTP(smtp_server, smtp_port)
+                server.starttls()
+                server.login(smtp_username, smtp_password)
+                server.sendmail(sender, recipient, message.as_string())
+                server.quit()
+            except Exception as e:
+                print(f"Failed to send email: {e}")
+            EOF
