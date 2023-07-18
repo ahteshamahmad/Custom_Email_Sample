@@ -29,7 +29,5 @@ jobs:
         - build_success
 
 workflows:
-  version: 2
-  build_and_notify:
-    jobs:
-      - build
+  jobs:
+    - build
