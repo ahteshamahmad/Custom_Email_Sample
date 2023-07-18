@@ -10,7 +10,6 @@ jobs:
       - run:
           name: Send Email Notification
           command: |
-            python - <EOF
             import smtplib
             from email.mime.text import MIMEText
 
@@ -44,4 +43,3 @@ jobs:
                 server.quit()
             except Exception as e:
                 print(f"Failed to send email: {e}")
-            EOF
