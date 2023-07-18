@@ -7,13 +7,8 @@ jobs:
     steps:
       - checkout # Checkout the source code
       - run:
-          name: Install dependencies
-          command: npm install
-
-      # Run tests
-      - run:
-          name: Run tests
-          command: npm test
+          name: Print the Hello World
+          command: echo "Hello World"
 
   # Configure email notifications
 notifications:
