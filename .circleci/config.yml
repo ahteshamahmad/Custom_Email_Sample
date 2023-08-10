@@ -45,3 +45,12 @@ jobs:
             except Exception as e:
                 print(f"Failed to send email: {e}")
             '
+            cd Mydir
+            echo "Hi This task has been completed"
+            echo "Hi I am checking build status as per condition"
+            if [[ $? -eq 0 ]]; then
+              echo "Job passed successfully"
+            else
+              echo "Job failed. Sending failure email."
+            fi
+            
