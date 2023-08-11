@@ -75,14 +75,8 @@ template_body = """
 </html>
 """
 
-notification_message = "Please take action on the following item..."
-formatted_body = template_body.format(
-    recipient_name="AfridiAltamash",
-    sender_name="Ahtesham",
-    notification_message=notification_message
-)
 message = MIMEMultipart()
-message.attach(MIMEText(formatted_body, "plain"))
+message.attach(MIMEText(template_body, "html"))
 
 # Connect to the SMTP server and send the email
 try:
