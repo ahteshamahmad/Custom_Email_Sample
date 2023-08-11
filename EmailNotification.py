@@ -1,5 +1,6 @@
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Set your verified sender email address
 sender = "ahtesham.ahmad2018@gmail.com"
@@ -73,6 +74,14 @@ template_body="""
 </body>
 </html>
 """
+notification_message = "Please take action on the following item..."
+formatted_body = body_template.format(
+    recipient_name="AfridiAltamash",
+    sender_name="Ahtesham",
+    notification_message=notification_message
+)
+message = MIMEMultipart()
+message.attach(MIMEText(formatted_body, "plain"))
 
 # Connect to the SMTP server and send the email
 try:
