@@ -7,8 +7,21 @@ jobs:
       - checkout
       # Your build steps here
 
+workflows:
+  version: 2
+  build_and_notify:
+    jobs:
+      - build
+    on_success:
       - run:
-          name: Send Email Notification
+          name: Send success notification
+          command: |
+            python EmailNotification_Success.py
+
+    # Send a notification if the entire workflow fails
+    on_fail:
+      - run:
+          name: Send failure notification
           command: |
             python EmailNotification_Fail.py
             
