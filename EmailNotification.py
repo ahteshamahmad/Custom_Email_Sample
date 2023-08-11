@@ -75,7 +75,7 @@ template_body="""
 </html>
 """
 notification_message = "Please take action on the following item..."
-formatted_body = body_template.format(
+formatted_body = template_body.format(
     recipient_name="AfridiAltamash",
     sender_name="Ahtesham",
     notification_message=notification_message
