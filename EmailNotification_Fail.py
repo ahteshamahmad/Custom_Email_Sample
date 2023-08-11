@@ -25,9 +25,9 @@ body = "Your CircleCI build has completed!"
 
 # Create a MIMEText object
 message = MIMEText(body)
-message["subject"] = Circleci Job Build Status
-message["From"] = Ahtesham
-message["To"] = Altamash
+message["subject"] = subject
+message["From"] = sender
+message["To"] = recipient
 template_body = """
 <!DOCTYPE html>
 <html>
