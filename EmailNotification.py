@@ -22,7 +22,7 @@ message = MIMEText(body)
 message["subject"] = subject
 message["From"] = sender
 message["To"] = recipient
-template_body="""
+template_body = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,6 +74,7 @@ template_body="""
 </body>
 </html>
 """
+
 notification_message = "Please take action on the following item..."
 formatted_body = template_body.format(
     recipient_name="AfridiAltamash",
