@@ -9,6 +9,7 @@ circle_repository_url = os.environ.get("CIRCLE_REPOSITORY_URL")
 circle_branchname = os.environ.get("CIRCLE_BRANCH")
 circle_sha1 = os.environ.get("CIRCLE_SHA1")
 circle_workflow_id = os.environ.get("CIRCLE_WORKFLOW_ID")
+circleci_job_build_url = os.environ.get("CIRCLE_BUILD_URL")
 
 print(circle_project_reponame)
 print(circle_project_username)
@@ -78,6 +79,7 @@ template_body = f"""
 			<p>Branch: {circle_branchname} </p>
 			<p>Job URL: {circle_repository_url} </p>
 			<p>Workflow Id: {circle_workflow_id} </p>
+                        <p>Job_Build_Url:{circleci_job_build_url} </p>
 			<p>Best regards,</p>
 			<p>Your CircleCI bot</p> 
 		</div>
