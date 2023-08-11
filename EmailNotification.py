@@ -21,6 +21,58 @@ message = MIMEText(body)
 message["subject"] = subject
 message["From"] = sender
 message["To"] = recipient
+template_body"""
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CircleCI Build Notification</title>
+  <style>
+    /* Add custom CSS styles here to style your email content */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #008000;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    .footer {
+	  background-color: #333; 
+	  color: #fff; 
+	  padding: 1px; 
+	  text-align: center; 
+	  } 
+   </style> 
+</head> 
+<body> 
+	<div class="container">
+		<div class="header">
+			<h1>CircleCI Job Success</h1>
+		</div> 
+		<div class="content"> 
+			<p>Hello Team</p> 
+			<p>Your build in the $CIRCLE_PROJECT_REPONAME repository was $CIRCLE_JOB_NAME.</p>
+			<p>Commit: $CIRCLE_SHA1</p> <p>Branch: $CIRCLE_BRANCH</p> <p>Job URL: $CIRCLE_BUILD_URL</p>
+			<p>Best regards,</p>
+			<p>Your CircleCI bot</p> 
+		</div>
+		<div class="footer"> 
+			<p>This is an automated email from CircleCI. please do not reply.</p>
+		</div>
+	</div> 
+</body>
+</html>
+"""
 
 # Connect to the SMTP server and send the email
 try:
