@@ -9,6 +9,9 @@ circle_repository_url = os.environ.get("CIRCLE_REPOSITORY_URL")
 circle_branchname = os.environ.get("CIRCLE_BRANCH")
 circle_sha1 = os.environ.get("CIRCLE_SHA1")
 circle_workflow_id = os.environ.get("CIRCLE_WORKFLOW_ID")
+
+print(circle_project_reponame)
+print(circle_project_username)
 # Set your verified sender email address
 sender = "ahtesham.ahmad2018@gmail.com"
 # Set your recipient email address
