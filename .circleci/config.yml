@@ -10,6 +10,6 @@ jobs:
       - run:
           name: Send Email Notification
           command: |
-            python EmailNotification.py
+            python EmailNotification_Success.py
             
             
