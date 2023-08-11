@@ -21,7 +21,7 @@ message = MIMEText(body)
 message["subject"] = subject
 message["From"] = sender
 message["To"] = recipient
-template_body"""
+template_body="""
 <!DOCTYPE html>
 <html>
 <head>
