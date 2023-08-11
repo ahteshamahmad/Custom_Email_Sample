@@ -72,12 +72,12 @@ template_body = """
 		</div> 
 		<div class="content"> 
 			<p>Hello Team</p> 
-			<p>Your build in the { circle_project_reponame } </p>
-			<p>User { circle_project_username } </p>
-			<p>Commit: { circle_sha1 } </p>
-			<p>Branch: { circle_branchname } </p>
-			<p>Job URL: { circle_repository_url } </p>
-			<p>Workflow Id: { circle_workflow_id } </p>
+			<p>Your build in the {circle_project_reponame} </p>
+			<p>User {circle_project_username} </p>
+			<p>Commit: {circle_sha1} </p>
+			<p>Branch: {circle_branchname} </p>
+			<p>Job URL: {circle_repository_url} </p>
+			<p>Workflow Id: {circle_workflow_id} </p>
 			<p>Best regards,</p>
 			<p>Your CircleCI bot</p> 
 		</div>
