@@ -39,30 +39,30 @@ template_body = f"""
   <title>CircleCI Build Notification</title>
   <style>
     /* Add custom CSS styles here to style your email content */
-    body {
+    body {{
       font-family: Arial, sans-serif;
-    }
-    .container {
+    }}
+    .container {{
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
-    }
-    .header {
+    }}
+    .header {{
       background-color: #FF0000;
       color: #fff;
       padding: 10px;
       text-align: center;
-    }
-    .content {
+    }}
+    .content {{
       padding: 20px;
       border: 1px solid #ccc;
-    }
-    .footer {
+    }}
+    .footer {{
 	  background-color: #333; 
 	  color: #fff; 
 	  padding: 1px; 
 	  text-align: center; 
-	  } 
+	  }}
    </style> 
 </head> 
 <body> 
