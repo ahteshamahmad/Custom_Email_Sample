@@ -9,17 +9,17 @@ jobs:
 
   notify_success:
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
     steps:
       - run:
           name: Send success email
           command: |
             # Call your custom Python email notification script for success
-            python EmailNotifcation_Success.py success "Build successful! :tada:"
+            python EmailNotification_Success.py success "Build successful! :tada:"
 
   notify_failure:
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
     steps:
       - run:
           name: Send failure email
