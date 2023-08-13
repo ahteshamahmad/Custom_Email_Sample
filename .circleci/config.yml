@@ -31,12 +31,17 @@ workflows:
   build_and_notify:
     jobs:
       - build
-    # Trigger the appropriate notification job based on success or failure
-    # Adjust filters or conditions based on your needs (e.g., branches, tags, etc.)
-    post-steps:
-      - when:
-          status: success
-        run: notify_success
-      - when:
-          status: failure
-        run: notify_failure
+      - notify_success:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
+      - notify_failure:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
