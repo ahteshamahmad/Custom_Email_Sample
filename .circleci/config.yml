@@ -38,14 +38,14 @@ workflows:
   build_and_notify:
     jobs:
       - build
-on_success:
+    on_success:
   - notify_success:
       filters:
         branches:
           only:
             - main
 
-on_fail:
+    on_fail:
   - notify_failure:
       filters:
         branches:
