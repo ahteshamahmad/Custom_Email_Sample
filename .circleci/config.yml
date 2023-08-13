@@ -31,10 +31,10 @@ jobs:
       - run:
           name: Send email notification
           command: |
-            if [ "${CIRCLE_JOB}" = "build3" ] && [ "${CIRCLE_WORKFLOW_STATUS}" = "failed" ]; then
-              python EmailNotification_Fail.py
-            elif [ "${CIRCLE_JOB}" = "build3" ] && [ "${CIRCLE_WORKFLOW_STATUS}" = "success" ]; then
+            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
               python EmailNotification_Success.py
+            else
+              python EmailNotification_Fail.py
             fi
 
 workflows:
