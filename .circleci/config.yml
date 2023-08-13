@@ -23,26 +23,26 @@ jobs:
 
 workflows:
   version: 2
-  jobs:
-    - build1
-    - build2
   build_and_notify:
-    notify_failure:
-      jobs:
-        - build
-      when: on_fail
-      steps:
-        - run:
-            name: Send Failed notification
-            command: |
-              python EmailNotification_Fail.py
+    jobs:
+      - build1
+      - build2
+  notify_failure:
+    jobs:
+      - build
+    when: on_fail
+    steps:
+      - run:
+          name: Send Failed notification
+          command: |
+            python EmailNotification_Fail.py
 
-    notify_success:
-      jobs:
-        - build
-      when: on_success
-      steps:
-        - run:
-            name: Send success notification
-            command: |
-              python EmailNotification_Success.py
+  notify_success:
+    jobs:
+      - build
+    when: on_success
+    steps:
+      - run:
+          name: Send success notification
+          command: |
+            python EmailNotification_Success.py
