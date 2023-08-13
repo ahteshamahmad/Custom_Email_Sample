@@ -1,40 +1,39 @@
 version: 2.1
 jobs:
-  build_and_notify:
+  build:
     docker:
-      - image: circleci/python:3.9
+      - image: your-docker-image
     steps:
       - checkout
+      # Your build steps here
 
-      # Run the first build
+  notify_success:
+    docker:
+      - image: circleci/python:3.8
+    steps:
       - run:
-          name: Execute Build 1
+          name: Send success email
           command: |
-            # Your build steps for the first command (build) here
-            echo "Build 1: Successful"
-            # Set an environment variable to indicate success
-            echo "BUILD1_STATUS=success" >> $BASH_ENV
+            # Call your custom Python email notification script for success
+            python EmailNotifcation_Success.py success "Build successful! :tada:"
 
-      # Run the second build
+  notify_failure:
+    docker:
+      - image: circleci/python:3.8
+    steps:
       - run:
-          name: Execute Build 2
+          name: Send failure email
           command: |
-            # Your build steps for the second command (build) here
-            echo "Build 2: Failed"
-            exit 1  # Simulate failure
-            # Set an environment variable to indicate failure
-            echo "BUILD2_STATUS=failure" >> $BASH_ENV
-
-      # Send notification based on the overall build status
-      - run:
-          name: Send Notification
-          command: |
-            # Load the environment variables from the previous steps
-            source $BASH_ENV
-            # Check the status of each
+            # Call your custom Python email notification script for failure
+            python EmailNotification_Fail.py failure "Build failed! :x:"
 
 workflows:
   version: 2
   build_and_notify:
     jobs:
-      - build_and_notify
+      - build
+    # Notify on both success and failure
+    on_success:
+      - notify_success
+    on_fail:
+      - notify_failure
