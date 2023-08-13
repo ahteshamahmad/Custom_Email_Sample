@@ -44,12 +44,12 @@ workflows:
           filters:
             branches:
               only:
-                - your-branch-name
+                - main
       - notify_failure:
           requires:
             - build
           filters:
             branches:
               only:
-                - your-branch-name
+                - main
           
