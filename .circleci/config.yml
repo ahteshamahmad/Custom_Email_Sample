@@ -45,6 +45,3 @@ workflows:
       - build2
 
       - send_email_notification:
-          requires:
-            - build1
-            - build2
