@@ -47,3 +47,7 @@ workflows:
           requires:
             - build1
             - build2
+          filters:
+            branches:
+              ignore:
+                - no-ci-notification
