@@ -1,17 +1,39 @@
 version: 2.1
 jobs:
-  build:
+  build1:
     docker:
       - image: circleci/python:3.9
     steps:
       - checkout
-      # Your build steps here
+      # Your build steps for build1 here
       - run:
-          name: Check Notification status on success
+          name: Check Notification status on success (Build 1)
           command: |
             python --version
 
-  send_email_notification1:
+  build2:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      # Your build steps for build2 here
+      - run:
+          name: Check Notification status on success (Build 2)
+          command: |
+            python -version
+
+  build3:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      # Your build steps for build3 here
+      - run:
+          name: Check Notification status on success (Build 3)
+          command: |
+            python --version
+
+  send_email_notification:
     docker:
       - image: circleci/python:3.9
     steps:
@@ -19,21 +41,23 @@ jobs:
       - run:
           name: Send email notification
           command: |
-            python EmailNotification_Success.py
-  send_email_notification2:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - run:
-          name: Send email notification
-          command: |
-            python EmailNotification_Fail.py
+            if [ "${CIRCLE_JOB}" = "build3" ] && [ "${CIRCLE_WORKFLOW_STATUS}" = "failed" ]; then
+              python EmailNotification_Fail.py
+            elif [ "${CIRCLE_JOB}" = "build3" ] && [ "${CIRCLE_WORKFLOW_STATUS}" = "success" ]; then
+              python EmailNotification_Success.py
+            fi
 
 workflows:
+  version: 2
+  build_and_notify:
     jobs:
-      - build:
-    on_success:
-      - send_email_notification1
-    on_fail:
-      - send_email_notification2
+      - build1
+      - build2
+      - build3:
+          requires:
+            - build1
+            - build2
+
+      - send_email_notification:
+          requires:
+            - build3
