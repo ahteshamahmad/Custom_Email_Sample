@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   build1:
     docker:
@@ -59,9 +60,7 @@ workflows:
     jobs:
       - send_build_status_notification:
           requires:
-            - build1
-            - build2
-            - build3
+            - build_and_notify
           filters:
             branches:
               ignore:
