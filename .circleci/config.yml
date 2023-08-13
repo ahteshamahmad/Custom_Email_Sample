@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Send success email
           command: |
-            python EmailNotification_Success.py
+            python ./EmailNotification_Success.py
 
   notify_failure:
     docker:
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Send failure email
           command: |
-            python EmailNotification_Fail.py
+            python ./EmailNotification_Fail.py
 
 workflows:
   version: 2
