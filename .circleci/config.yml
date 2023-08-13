@@ -31,8 +31,6 @@ jobs:
             python EmailNotification_Fail.py
 
 workflows:
-  version: 2
-  build_and_notify:
     jobs:
       - build:
           on_success:
