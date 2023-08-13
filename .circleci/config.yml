@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       # Your build steps here
-      run bdc
+      cd abc
       echo "Hi This is for testing"
 
   notify_success:
