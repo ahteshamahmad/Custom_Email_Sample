@@ -42,3 +42,7 @@ workflows:
       - build2:
           on_fail:
             - send_email_notification
+      - send_email_notification:
+          requires:
+            - build1
+            - build2
