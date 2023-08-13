@@ -1,67 +1,47 @@
 version: 2.1
-
 jobs:
-  build1:
+  build_and_notify:
     docker:
       - image: circleci/python:3.9
     steps:
       - checkout
-      # Your build steps for build1 here
-      - run:
-          name: Check Notification status on success (Build 1)
-          command: |
-            python --version
 
-  build2:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      # Your build steps for build2 here
+      # Run the first build
       - run:
-          name: Check Notification status on success (Build 2)
+          name: Run Build 1
           command: |
-            python --version
+            # Your build steps for the first command (build) here
+            echo "Build 1: Successful"
+            # Set an environment variable to indicate success
+            echo "BUILD1_STATUS=success" >> $BASH_ENV
 
-  build3:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      # Your build steps for build3 here
+      # Run the second build
       - run:
-          name: Check Notification status on success (Build 3)
+          name: Run Build 2
           command: |
-            python --version
+            # Your build steps for the second command (build) here
+            echo "Build 2: Failed"
+            exit 1  # Simulate failure
+            # Set an environment variable to indicate failure
+            echo "BUILD2_STATUS=failure" >> $BASH_ENV
 
-  send_build_status_notification:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
+      # Send notification based on the overall build status
       - run:
-          name: Send overall status notification
+          name: Send Notification
           command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
-              python EmailNotification_Success.py
+            # Load the environment variables from the previous steps
+            source $BASH_ENV
+            # Check the status of each build
+            if [ "$BUILD1_STATUS" == "success" ] && [ "$BUILD2_STATUS" == "success" ]; then
+              echo "Sending overall success notification"
+              # Replace this line with the actual command to send success notification
             else
-              python EmailNotification_Fail.py
+              echo "Sending overall failure notification"
+              # Replace this line with the actual command to send failure notification
             fi
 
 workflows:
   version: 2
   build_and_notify:
     jobs:
-      - build1
-      - build2
-      - build3
-
-  notify_status:
-    jobs:
-      - send_build_status_notification:
-          requires:
-            - build_and_notify
-          filters:
-            branches:
-              ignore:
-                - no-ci-notification
+      - build_and_notify
