@@ -55,24 +55,14 @@ workflows:
       - build2
       - build3
 
-      - notify_status:
-          requires:
-            - build1
-            - build2
-            - build3
-          filters:
-            branches:
-              ignore:
-                - no-ci-notification
-          on-success:
-            - send_build_status_notification
-          on-failure:
-            - send_build_status_notification
-
-  send_build_status_notification:
+  notify_status:
     requires:
-      - notify_status
+      - build1
+      - build2
+      - build3
     filters:
       branches:
         ignore:
           - no-ci-notification
+    post-steps:
+      - send_build_status_notification
