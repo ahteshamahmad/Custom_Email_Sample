@@ -31,17 +31,14 @@ jobs:
       - run:
           name: Send email notification
           command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
-              python EmailNotification_Success.py
-            else
               python EmailNotification_Fail.py
-            fi
 
 workflows:
   version: 2
   build_and_notify:
-    jobs:
-      - build1
-      - build2
-
-      - send_email_notification:
+    - build1:
+          on_fail:
+            - send_email_notification
+      - build2:
+          on_fail:
+            - send_email_notification
