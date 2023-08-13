@@ -20,10 +20,10 @@ jobs:
           name: Run Build 2
           command: |
             # Your build steps for the second command (build) here
-            echo "Build 2: Failed"
+            echo "Build 2: Successful"
             exit 1  # Simulate failure
             # Set an environment variable to indicate failure
-            echo "BUILD2_STATUS=success" >> $BASH_ENV
+            echo "BUILD2_STATUS=failure" >> $BASH_ENV
 
       # Send notification based on the overall build status
       - run:
