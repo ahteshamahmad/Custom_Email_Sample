@@ -32,8 +32,13 @@ workflows:
   build_and_notify:
     jobs:
       - build
-    # Notify on both success and failure
-    on_success:
-      - notify_success
-    on_fail:
-      - notify_failure
+      - notify_success:
+          filters:
+            branches:
+              only:
+                - main
+      - notify_failure:
+          filters:
+            branches:
+              only:
+                - main
