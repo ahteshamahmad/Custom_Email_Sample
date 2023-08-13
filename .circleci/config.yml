@@ -32,3 +32,9 @@ jobs:
             # Load the environment variables from the previous steps
             source $BASH_ENV
             # Check the status of each
+
+workflows:
+  version: 2
+  build_and_notify:
+    jobs:
+      - build_and_notify
