@@ -1,30 +1,29 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: your-docker-image
+      - image: python:3.9
     steps:
       - checkout
       # Your build steps here
 
   notify_success:
     docker:
-      - image: circleci/python:3.9
+      - image: python:3.9
     steps:
       - run:
           name: Send success email
           command: |
-            # Call your custom Python email notification script for success
             python EmailNotification_Success.py success "Build successful! :tada:"
 
   notify_failure:
     docker:
-      - image: circleci/python:3.9
+      - image: python:3.9
     steps:
       - run:
           name: Send failure email
           command: |
-            # Call your custom Python email notification script for failure
             python EmailNotification_Fail.py failure "Build failed! :x:"
 
 workflows:
@@ -32,13 +31,12 @@ workflows:
   build_and_notify:
     jobs:
       - build
-      - notify_success:
-          filters:
-            branches:
-              only:
-                - main
-      - notify_failure:
-          filters:
-            branches:
-              only:
-                - main
+    # Trigger the appropriate notification job based on success or failure
+    # Adjust filters or conditions based on your needs (e.g., branches, tags, etc.)
+    post-steps:
+      - when:
+          status: success
+        run: notify_success
+      - when:
+          status: failure
+        run: notify_failure
