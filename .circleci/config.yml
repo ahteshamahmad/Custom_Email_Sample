@@ -7,6 +7,8 @@ jobs:
     steps:
       - checkout
       # Your build steps here
+      run bdc
+      echo "Hi This is for testing"
 
   notify_success:
     docker:
@@ -22,6 +24,7 @@ jobs:
     docker:
       - image: python:3.9
     steps:
+      - checkout
       - run:
           name: Send failure email
           command: |
