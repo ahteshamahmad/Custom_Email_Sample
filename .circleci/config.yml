@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Send success email
           command: |
-            python EmailNotification_Success.py
+            python /root/project/EmailNotification_Success.py
 
   notify_failure:
     docker:
