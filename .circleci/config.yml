@@ -6,9 +6,12 @@ jobs:
       - image: python:3.9
     steps:
       - checkout
+      - run:
+           name: Checking command notification
+           command: |
+             python -version
+             echo "Hi This is for testing"
       # Your build steps here
-      python -version
-      echo "Hi This is for testing"
 
   notify_success:
     docker:
