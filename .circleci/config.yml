@@ -9,7 +9,8 @@ jobs:
       - run:
           name: Check Notification status on success
           command: |
-            python --version
+            python -version
+
   build2:
     docker:
       - image: circleci/python:3.9
@@ -19,7 +20,7 @@ jobs:
       - run:
           name: Check Notification status on success
           command: |
-            python -version       
+            python --version
 
 workflows:
   version: 2
@@ -29,7 +30,8 @@ workflows:
       - build2:
           requires:
             - build1
-  notify_failure:
+
+  notify_on_failure:
     jobs:
       - send_failure_email_notification:
           requires:
@@ -46,6 +48,7 @@ workflows:
           filters:
             status:
               - success
+
 jobs:
   send_failure_email_notification:
     docker:
