@@ -11,13 +11,23 @@ jobs:
           command: |
             python --version
 
-  send_email_notification:
+  send_email_notification_success:
     docker:
       - image: circleci/python:3.9
     steps:
       - checkout
       - run:
-          name: Send email notification
+          name: Send email notification (Success)
+          command: |
+            python EmailNotification_Success.py
+
+  send_email_notification_failure:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Send email notification (Failure)
           command: |
             python EmailNotification_Fail.py
 
@@ -25,8 +35,16 @@ workflows:
   version: 2
   build_and_notify:
     jobs:
-      - build:
-          on_success:
-            - send_email_notification
-          on_fail:
-            - send_email_notification
+      - build
+      - send_email_notification_success:
+          requires:
+            - build
+          filters:
+            status:
+              - success
+      - send_email_notification_failure:
+          requires:
+            - build
+          filters:
+            status:
+              - failed
