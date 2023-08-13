@@ -10,6 +10,12 @@ jobs:
           name: Check Notification status on success (Build 1)
           command: |
             python --version
+      - run:
+          name: Send overall status notification (Build 1)
+          command: |
+            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+              python EmailNotification_Fail.py
+            fi
 
   build2:
     docker:
@@ -21,6 +27,12 @@ jobs:
           name: Check Notification status on success (Build 2)
           command: |
             python --version
+      - run:
+          name: Send overall status notification (Build 2)
+          command: |
+            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+              python EmailNotification_Fail.py
+            fi
 
   build3:
     docker:
@@ -32,31 +44,17 @@ jobs:
           name: Check Notification status on success (Build 3)
           command: |
             python --version
+      - run:
+          name: Send overall status notification (Build 3)
+          command: |
+            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+              python EmailNotification_Fail.py
+            fi
 
 workflows:
   version: 2
   build_and_notify:
     jobs:
-      - build1:
-          on_fail:
-            - send_build_status_notification
-      - build2:
-          on_fail:
-            - send_build_status_notification
-      - build3:
-          on_fail:
-            - send_build_status_notification
-
-  send_build_status_notification:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - run:
-          name: Send overall email notification
-          command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
-              python EmailNotification_Success.py
-            else
-              python EmailNotification_Fail.py
-            fi
+      - build1
+      - build2
+      - build3
