@@ -22,16 +22,6 @@ jobs:
           command: |
             python -version
 
-  build3:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      # Your build steps for build3 here
-      - run:
-          name: Check Notification status on success (Build 3)
-          command: |
-            python --version
 
   send_email_notification:
     docker:
@@ -53,9 +43,8 @@ workflows:
     jobs:
       - build1
       - build2
-      - build3:
+
+      - send_email_notification:
           requires:
             - build1
             - build2
-
-      - send_email_notification:
