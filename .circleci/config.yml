@@ -33,7 +33,7 @@ jobs:
 workflows:
     jobs:
       - build:
-          on_success:
-            - send_email_notification1
-          on_fail:
-            - send_email_notification2
+    on_success:
+      - send_email_notification1
+    on_fail:
+      - send_email_notification2
