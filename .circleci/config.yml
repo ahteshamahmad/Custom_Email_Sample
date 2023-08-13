@@ -23,7 +23,7 @@ jobs:
             echo "Build 2: Failed"
             exit 1  # Simulate failure
             # Set an environment variable to indicate failure
-            echo "BUILD2_STATUS=failure" >> $BASH_ENV
+            echo "BUILD2_STATUS=success" >> $BASH_ENV
 
       # Send notification based on the overall build status
       - run:
