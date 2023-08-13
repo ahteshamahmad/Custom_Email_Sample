@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Send overall status notification (Build 1)
           command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
               python EmailNotification_Fail.py
             fi
 
@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Send overall status notification (Build 2)
           command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
               python EmailNotification_Fail.py
             fi
 
@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Send overall status notification (Build 3)
           command: |
-            if [ "$CIRCLE_WORKFLOW_STATUS" != "success" ]; then
+            if [ "$CIRCLE_WORKFLOW_STATUS" == "success" ]; then
               python EmailNotification_Fail.py
             fi
 
