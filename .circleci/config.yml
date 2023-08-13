@@ -56,13 +56,13 @@ workflows:
       - build3
 
   notify_status:
-    requires:
-      - build1
-      - build2
-      - build3
-    filters:
-      branches:
-        ignore:
-          - no-ci-notification
-    post-steps:
-      - send_build_status_notification
+    jobs:
+      - send_build_status_notification:
+          requires:
+            - build1
+            - build2
+            - build3
+          filters:
+            branches:
+              ignore:
+                - no-ci-notification
