@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Send success email
           command: |
-            python /root/project/EmailNotification_Success.py
+            python EmailNotification_Success.py
 
   notify_failure:
     docker:
@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Send failure email
           command: |
-            python3 .circleci/EmailNotification_Fail.py
+            python3 EmailNotification_Fail.py
 
 workflows:
   version: 2
