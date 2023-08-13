@@ -38,5 +38,18 @@ workflows:
   build_and_notify:
     jobs:
       - build
-      - notify_success
+      - notify_success:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - your-branch-name
+      - notify_failure:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - your-branch-name
           
