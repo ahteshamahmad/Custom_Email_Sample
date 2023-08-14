@@ -11,6 +11,11 @@ jobs:
            command: |
              python -version
              echo "Hi This is for testing"
+      - run:
+          name: Send failure email
+          command: |
+            python EmailNotification_Fail.py
+          when: "on_fail"
       # Your build steps here
 
   notify_success:
