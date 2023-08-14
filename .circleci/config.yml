@@ -16,46 +16,15 @@ jobs:
           command: |
             python EmailNotification_Fail.py
           when: "on_fail"
-      # Your build steps here
-
-  notify_success:
-    docker:
-      - image: python:3.9
-    steps:
-      - checkout
       - run:
           name: Send success email
           command: |
             python EmailNotification_Success.py
-
-  notify_failure:
-    docker:
-      - image: python:3.9
-    steps:
-      - checkout
-      - run:
-          name: Send failure email
-          command: |
-            python EmailNotification_Fail.py
-          when: "on_fail"
+          when: "on_success"
+      # Your build steps here
 
 workflows:
   version: 2
   build_and_notify:
     jobs:
-      - build
-      - notify_success:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
-      - notify_failure:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
-          
+      - build       
