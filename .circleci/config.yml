@@ -9,7 +9,7 @@ jobs:
       - run:
            name: Checking command notification
            command: |
-             python -version
+             python --version
              echo "Hi This is for testing"
       - run:
           name: Send failure email
