@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: python:3.9
     steps:
-      - checkout
+#      - checkout
       - run:
            name: Checking command notification
            command: |
@@ -27,4 +27,4 @@ workflows:
   version: 2
   build_and_notify:
     jobs:
-       build       
+      - build       
