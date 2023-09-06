@@ -9,7 +9,7 @@ jobs:
       - run:
            name: Checking command notification
            command: |
-             rm -rf python:3.9 
+             docker rmi python:3.9 
              python3 --version
              echo "Hi This is for testing"
       - run:
