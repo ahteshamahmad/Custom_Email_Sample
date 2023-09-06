@@ -9,17 +9,17 @@ jobs:
       - run:
            name: Checking command notification
            command: |
-             python --version
+             python3 --version
              echo "Hi This is for testing"
       - run:
           name: Send failure email
           command: |
-            python EmailNotification_Fail.py
+            python3 EmailNotification_Fail.py
           when: "on_fail"
       - run:
           name: Send success email
           command: |
-            python EmailNotification_Success.py
+            python3 EmailNotification_Success.py
           when: "on_success"
       # Your build steps here
 
